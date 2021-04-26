@@ -23,5 +23,9 @@ export default ({
     components: {
         BookableListItem
     },
+    created() {
+        console.log("created");
+    },
+    
 })
 </script>
