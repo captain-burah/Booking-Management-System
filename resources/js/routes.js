@@ -1,11 +1,15 @@
 import VueRouter from "vue-router";
 import ExampleComponent from "./components/ExampleComponent";
 import Example2 from "./components/Example2";
+import Bookables from "./bookables/Bookables";
+import BookableListItem from "./bookables/BookableListItem";
+
+
 
 const routes = [
     {
         path: "/",
-        component: ExampleComponent,
+        component: Bookables,
         name: "home",
     },
     {
@@ -20,5 +24,7 @@ const router = new VueRouter({
     routes, 
     mode: "history",
 });
+
+
 
 export default router;
