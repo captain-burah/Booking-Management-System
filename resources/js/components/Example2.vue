@@ -21,3 +21,9 @@
         }
     }
 </script>
+<style scoped>
+    .card{
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: saturate(150%) blur(12px);
+    }
+</style>
