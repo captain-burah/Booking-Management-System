@@ -14,9 +14,8 @@
             .bg-index {
                 margin: 0;
                 padding: 0;
-                height: 100vh;
-                width: 100vw;
-                background: url('{{asset('img/bg18.jpg')}}') no-repeat center center fixed;
+                min-height: 100vh;
+                background: url('{{asset('img/bg0.jpg')}}') no-repeat center center fixed;
                 background-size: cover;
                 transform: translate3d(0px, 0px, 0px);
             }

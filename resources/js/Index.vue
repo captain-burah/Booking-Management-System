@@ -5,7 +5,7 @@
             <router-link class="text-dark btn nav-button" :to="{name: 'second'}">Component Test</router-link>
         </nav>
 
-        <div class="container mt-4 mb-4 pr-4 pl-4 ">
+        <div class="container mt-4 px-3">
             <router-view></router-view>
         </div>
         
