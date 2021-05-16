@@ -1,8 +1,8 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">{{ itemTitle }}</h1>
-            <p class="card-text">{{ itemContent }}</p>
+            <h2 class="card-title">{{ itemTitle }}</h2>
+            <p class="card-text m-0">{{ itemContent }}</p>
             <p class="card-text">Starting from {{  price }} onwards</p>
         </div>
     </div>

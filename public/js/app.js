@@ -1989,6 +1989,20 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.loading = true;
+    var p = new Promise(function (resolve, reject) {
+      console.log(resolve);
+      console.log(reject);
+      setTimeout(function () {
+        return resolve('Hellow');
+      }, 3000);
+    }).then(function (result) {
+      return "Hellow Again " + result;
+    }).then(function (result) {
+      return console.log(result);
+    })["catch"](function (result) {
+      return console.log("Error ".concat(result));
+    });
+    console.log(p);
     setTimeout(function () {
       _this.bookables = [{
         title: "Cheap Villa 1",
@@ -38600,9 +38614,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-body" }, [
-      _c("h1", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.itemTitle))]),
+      _c("h2", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.itemTitle))]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.itemContent))]),
+      _c("p", { staticClass: "card-text m-0" }, [
+        _vm._v(_vm._s(_vm.itemContent))
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
         _vm._v("Starting from " + _vm._s(_vm.price) + " onwards")

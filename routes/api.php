@@ -1,5 +1,6 @@
 <?php
 
+use App\Bookable;
 use Illuminate\Http\Request;
 
 /*
@@ -16,3 +17,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('bookables', function (Request $request) {
+    return Bookable::all();
+});
+
+Route::get('bookables/{id}', function (Request $request, $bookableId) {
+    return Bookable::findOrFail($bookableId);
+});
+
+// Route::get('bookables/{id}/{optional?}', function (Request $request, $bookableId, $optional = null) {
+//     dd($bookableId, $optional);
+//     return Bookable::find($bookableId);
+// });
