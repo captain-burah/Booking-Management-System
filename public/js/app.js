@@ -1989,54 +1989,70 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.loading = true;
-    var p = new Promise(function (resolve, reject) {
+    var variablePromise = new Promise(function (resolve, reject) {
       console.log(resolve);
       console.log(reject);
       setTimeout(function () {
-        return resolve('Hellow');
+        return resolve('Hello');
       }, 3000);
     }).then(function (result) {
-      return "Hellow Again " + result;
+      return "Hello Again " + result;
     }).then(function (result) {
       return console.log(result);
     })["catch"](function (result) {
       return console.log("Error ".concat(result));
     });
-    console.log(p);
-    setTimeout(function () {
-      _this.bookables = [{
-        title: "Cheap Villa 1",
-        content: "A very cheap villa 1"
-      }, {
-        title: "Cheap Villa 2",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 3",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 4",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 5",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 6",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 7",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 7",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 7",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 7",
-        content: "A very cheap villa 2"
-      }];
+    console.log(variablePromise);
+    var request = axios.get("/api/bookables").then(function (response) {
+      _this.bookables = response.data;
       _this.loading = false;
-    }, 3000);
+    }); // setTimeout(() => {
+    //     this.bookables = 
+    //     [
+    //         {
+    //             title: "Cheap Villa 1",
+    //             content: "A very cheap villa 1",
+    //         },
+    //         {
+    //             title: "Cheap Villa 2",
+    //             content: "A very cheap villa 2",
+    //         },
+    //         {
+    //             title: "Cheap Villa 3",
+    //             content: "A very cheap villa 2",
+    //         },
+    //         {
+    //             title: "Cheap Villa 4",
+    //             content: "A very cheap villa 2",
+    //         },
+    //         {
+    //             title: "Cheap Villa 5",
+    //             content: "A very cheap villa 2",
+    //         },
+    //         {
+    //             title: "Cheap Villa 6",
+    //             content: "A very cheap villa 2",
+    //         }
+    //         ,
+    //         {
+    //             title: "Cheap Villa 7",
+    //             content: "A very cheap villa 2",
+    //         },
+    //         {
+    //             title: "Cheap Villa 7",
+    //             content: "A very cheap villa 2",
+    //         },
+    //         {
+    //             title: "Cheap Villa 7",
+    //             content: "A very cheap villa 2",
+    //         },
+    //         {
+    //             title: "Cheap Villa 7",
+    //             content: "A very cheap villa 2",
+    //         }
+    //     ];
+    //     this.loading = false;
+    // }, 3000);
   }
 });
 
@@ -38614,7 +38630,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-body" }, [
-      _c("h2", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.itemTitle))]),
+      _c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.itemTitle))]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text m-0" }, [
         _vm._v(_vm._s(_vm.itemContent))
@@ -38667,7 +38683,7 @@ var render = function() {
                       _c("bookable-list-item", {
                         attrs: {
                           "item-title": bookable.title,
-                          "item-content": bookable.content,
+                          "item-content": bookable.description,
                           price: 1000.5
                         }
                       })

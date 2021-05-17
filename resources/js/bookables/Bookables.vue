@@ -9,7 +9,7 @@
                 <div class="col" v-for="(bookable, column) in bookablesInRow(row)" :key="'row' + row + column">
                     <bookable-list-item 
                         :item-title="bookable.title" 
-                        :item-content="bookable.content" 
+                        :item-content="bookable.description" 
                         v-bind:price="1000.5"
                     ></bookable-list-item>
                 </div>
@@ -51,67 +51,76 @@ export default ({
             return this.columns - this.bookablesInRow(row).length;
         },
     },
+
     created() {
         this.loading = true;
         
-        const p = new Promise((resolve, reject) => {
+        const variablePromise = new Promise((resolve, reject) => {
             console.log(resolve);
             console.log(reject);
-            setTimeout(() => resolve('Hellow'), 3000);
+            setTimeout(() => resolve('Hello'), 3000);
         })
-        .then(result => "Hellow Again " + result)
+        .then(result => "Hello Again " + result)
         .then(result => console.log(result))
         .catch(result => console.log(`Error ${result}`));
-        console.log(p);
+        console.log(variablePromise);
 
-        setTimeout(() => {
-            this.bookables = 
-            [
-                {
-                    title: "Cheap Villa 1",
-                    content: "A very cheap villa 1",
-                },
-                {
-                    title: "Cheap Villa 2",
-                    content: "A very cheap villa 2",
-                },
-                {
-                    title: "Cheap Villa 3",
-                    content: "A very cheap villa 2",
-                },
-                {
-                    title: "Cheap Villa 4",
-                    content: "A very cheap villa 2",
-                },
-                {
-                    title: "Cheap Villa 5",
-                    content: "A very cheap villa 2",
-                },
-                {
-                    title: "Cheap Villa 6",
-                    content: "A very cheap villa 2",
-                }
-                ,
-                {
-                    title: "Cheap Villa 7",
-                    content: "A very cheap villa 2",
-                },
-                {
-                    title: "Cheap Villa 7",
-                    content: "A very cheap villa 2",
-                },
-                {
-                    title: "Cheap Villa 7",
-                    content: "A very cheap villa 2",
-                },
-                {
-                    title: "Cheap Villa 7",
-                    content: "A very cheap villa 2",
-                }
-            ];
+        const request = axios
+        .get("/api/bookables")
+        .then(response => {
+            this.bookables = response.data;
             this.loading = false;
+        });
+        
 
-        }, 3000);
+        // setTimeout(() => {
+        //     this.bookables = 
+        //     [
+        //         {
+        //             title: "Cheap Villa 1",
+        //             content: "A very cheap villa 1",
+        //         },
+        //         {
+        //             title: "Cheap Villa 2",
+        //             content: "A very cheap villa 2",
+        //         },
+        //         {
+        //             title: "Cheap Villa 3",
+        //             content: "A very cheap villa 2",
+        //         },
+        //         {
+        //             title: "Cheap Villa 4",
+        //             content: "A very cheap villa 2",
+        //         },
+        //         {
+        //             title: "Cheap Villa 5",
+        //             content: "A very cheap villa 2",
+        //         },
+        //         {
+        //             title: "Cheap Villa 6",
+        //             content: "A very cheap villa 2",
+        //         }
+        //         ,
+        //         {
+        //             title: "Cheap Villa 7",
+        //             content: "A very cheap villa 2",
+        //         },
+        //         {
+        //             title: "Cheap Villa 7",
+        //             content: "A very cheap villa 2",
+        //         },
+        //         {
+        //             title: "Cheap Villa 7",
+        //             content: "A very cheap villa 2",
+        //         },
+        //         {
+        //             title: "Cheap Villa 7",
+        //             content: "A very cheap villa 2",
+        //         }
+        //     ];
+        //     this.loading = false;
+
+        // }, 3000);
 
     },
     
