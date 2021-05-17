@@ -75,6 +75,7 @@ export default ({
         .get("/api/bookables")
         .then(response => {
             this.bookables = response.data;
+
             this.loading = false;
         });
         
