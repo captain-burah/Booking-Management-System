@@ -5,8 +5,14 @@
             Data is loading ....
         </div>
         <div v-else>
-            <div class="row py-2" v-for="row in rows" :key="'row' + row">
-                <div class="col" v-for="(bookable, column) in bookablesInRow(row)" :key="'row' + row + column">
+            <div class="row py-2" 
+                v-for="row in rows" 
+                :key="'row' + row"
+            >
+                <div class="col d-flex align-items-stretch" 
+                    v-for="(bookable, column) in bookablesInRow(row)" 
+                    :key="'row' + row + column"
+                >
                     <bookable-list-item 
                         :item-title="bookable.title" 
                         :item-content="bookable.description" 
