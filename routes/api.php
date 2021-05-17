@@ -1,6 +1,7 @@
 <?php
 
 use App\Bookable;
+use App\Customer;
 use Illuminate\Http\Request;
 
 /*
@@ -24,6 +25,14 @@ Route::get('bookables', function (Request $request) {
 
 Route::get('bookables/{id}', function (Request $request, $bookableId) {
     return Bookable::findOrFail($bookableId);
+});
+
+Route::get('customers', function (Request $request) {
+    return Customer::all();
+});
+
+Route::get('customers/{id}', function (Request $request, $customerId) {
+    return Customer::findOrFail($customerId);
 });
 
 // Route::get('bookables/{id}/{optional?}', function (Request $request, $bookableId, $optional = null) {

@@ -2,6 +2,8 @@ import VueRouter from "vue-router";
 import Bookables from "./bookables/Bookables";
 import Bookable from "./bookable/Bookable";
 import Customer from "./customer/Customer";
+import CustomerId from "./customer/CustomerId";
+
 
 
 
@@ -21,7 +23,11 @@ const routes = [
         component: Customer,
         name: "customer",
     },
-
+    {
+        path: "/customer/:id",
+        component: CustomerId,
+        name: "customerid",
+    },
 ];
 
 const router = new VueRouter({

@@ -9,21 +9,26 @@
         </div>
 
 
-        <div v-else class="row"
-            v-for="rowId in rows" 
-            :key="'row' + rowId"
+        <div v-else class="row py-2"
+        v-for="rowId in rows" 
+        :key="'row' + rowId"
         >
 
-            <div class="col  d-flex align-items-stretch" 
-                v-for="(customer, column) in customersInRow(rowId)" 
-                :key="'column' + column"
+            <div class="col" 
+            v-for="(customer, column) in customersInRow(rowId)" 
+            :key="'column' + column"
             >
-                <customer-list-item
+                <router-link class="d-flex align-items-stretch  text-decoration-none text-reset"
+                :to="{name: 'customerid', params: {id: customer.id}}"
+                >
+                    <customer-list-item 
                     :first-name="customer.fname"
                     :last-name="customer.lname"
                     :email="customer.email"
-                >
-                </customer-list-item>
+                    >
+                    </customer-list-item>
+                </router-link>
+                
             </div>
             <div class="col" v-for="p in placeholdersInRow(rowId)" :key="'row' + p">
             </div>
@@ -57,28 +62,17 @@ export default {
         },
         placeholdersInRow(row){
             return this.columns - this.customersInRow(row).length;
-        }        
+        },
     },
     created() {
         this.loading = true;
-        setTimeout(() => {
-        this.customers = 
-            [
-                {
-                    fname: "John",
-                    lname: "Abraham",
-                    email: "fds@fds.com",
-                },
-                {
-                    fname: "John",
-                    lname: "Abraham",
-                    email: "fds@fds.com",
-                },
-            ];
+        
+        const request = axios
+        .get(`/api/customers`)
+        .then(response => {
+            this.customers = response.data;
             this.loading = false;
-            console.log(this.customers);
-        }, 3000);
-        console.log(this.customers);
+        });
     }
 
 }
@@ -90,4 +84,5 @@ export default {
         background: rgba(255,255,255,0.1);
         backdrop-filter: saturate(150%) blur(10px);
     }
+
 </style>

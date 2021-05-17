@@ -2,7 +2,7 @@
     <div>
         <nav class="shadow navbar navbar-light">
             <router-link class="navbar-brand mr-auto" :to="{name: 'home'}">Booking System</router-link>
-            <router-link class="text-dark btn nav-button" :to="{name: 'second'}">Component Test</router-link>
+            <!-- <router-link class="text-dark btn nav-button" :to="{name: 'second'}">Component Test</router-link> -->
             <router-link class="text-dark btn nav-button" :to="{name: 'customer'}">Our Customers</router-link>
         </nav>
 
