@@ -2119,6 +2119,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2133,11 +2150,36 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     rows: function rows() {
-      return this.customers === null ? 0 : Math.ceil(this.customers.lenght / this.columns);
+      return this.customers === null ? 0 : Math.ceil(this.customers.length / this.columns);
     }
   },
-  method: {},
-  created: function created() {}
+  methods: {
+    customersInRow: function customersInRow(row) {
+      return this.customers.slice((row - 1) * this.columns, row * this.columns);
+    },
+    placeholdersInRow: function placeholdersInRow(row) {
+      return this.columns - this.customersInRow(row).length;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    this.loading = true;
+    setTimeout(function () {
+      _this.customers = [{
+        fname: "John",
+        lname: "Abraham",
+        email: "fds@fds.com"
+      }, {
+        fname: "John",
+        lname: "Abraham",
+        email: "fds@fds.com"
+      }];
+      _this.loading = false;
+      console.log(_this.customers);
+    }, 3000);
+    console.log(this.customers);
+  }
 });
 
 /***/ }),
@@ -38856,24 +38898,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mx-5" }, [
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col" },
-        [
-          _c("customer-list-item", {
-            attrs: {
-              "first-name": _vm.customer.fname,
-              "last-name": _vm.customer.lname,
-              "last-email": _vm.customer.email
-            }
+  return _c(
+    "div",
+    { staticClass: "mx-5" },
+    [
+      _vm._v("\n\n\n    Rows is: " + _vm._s(_vm.rows) + "\n    "),
+      _vm.loading
+        ? _c("div", [_vm._v("\n        Data is loading..\n    ")])
+        : _vm._l(_vm.rows, function(rowId) {
+            return _c(
+              "div",
+              { key: "row" + rowId, staticClass: "row" },
+              [
+                _vm._l(_vm.customersInRow(rowId), function(customer, column) {
+                  return _c(
+                    "div",
+                    {
+                      key: "column" + column,
+                      staticClass: "col  d-flex align-items-stretch"
+                    },
+                    [
+                      _c("customer-list-item", {
+                        attrs: {
+                          "first-name": customer.fname,
+                          "last-name": customer.lname,
+                          email: customer.email
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.placeholdersInRow(rowId), function(p) {
+                  return _c("div", { key: "row" + p, staticClass: "col" })
+                })
+              ],
+              2
+            )
           })
-        ],
-        1
-      )
-    ])
-  ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38901,9 +38967,9 @@ var render = function() {
     _c("div", { staticClass: "card-body" }, [
       _c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.firstName))]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.email))]),
+      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.lastName))]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.lastName))])
+      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.email))])
     ])
   ])
 }
