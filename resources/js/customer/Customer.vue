@@ -21,12 +21,7 @@
                 <router-link class="d-flex align-items-stretch  text-decoration-none text-reset"
                 :to="{name: 'customerid', params: {id: customer.id}}"
                 >
-                    <customer-list-item 
-                    :first-name="customer.fname"
-                    :last-name="customer.lname"
-                    :email="customer.email"
-                    >
-                    </customer-list-item>
+                    <customer-list-item v-bind="customer"></customer-list-item>
                 </router-link>
                 
             </div>

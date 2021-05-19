@@ -1912,17 +1912,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      bookable: null
+      bookable: null,
+      loading: false
     };
   },
   created: function created() {
     var _this = this;
 
+    this.loading = true;
     axios.get("/api/bookables/".concat(this.$route.params.id)).then(function (response) {
-      return _this.bookable = response.data;
+      _this.bookable = response.data, _this.loading = false;
     });
   }
 });
@@ -1938,6 +1954,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2100,11 +2118,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CustomerListItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomerListItem */ "./resources/js/customer/CustomerListItem.vue");
-//
-//
-//
-//
-//
 //
 //
 //
@@ -38807,7 +38820,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("data loading..")])
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          !_vm.loading
+            ? _c("div", [
+                _c("h2", [_vm._v(_vm._s(_vm.bookable.title))]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("article", [_vm._v(_vm._s(_vm.bookable.description))])
+              ])
+            : _c("div", [_vm._v("Data is loading..")])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-4" }, [_vm._v("availability & prices")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38832,17 +38863,26 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card w-100" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text m-0" }, [
-        _vm._v(_vm._s(_vm.description))
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v("Starting from " + _vm._s(_vm.id) + " onwards")
-      ])
-    ])
+    _c(
+      "div",
+      { staticClass: "card-body" },
+      [
+        _c(
+          "router-link",
+          { attrs: { to: { name: "bookable", params: { id: _vm.id } } } },
+          [_c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))])]
+        ),
+        _vm._v(" "),
+        _c("p", { staticClass: "card-text m-0" }, [
+          _vm._v(_vm._s(_vm.description))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "card-text" }, [
+          _vm._v("Starting from " + _vm._s(_vm.id) + " onwards")
+        ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -38958,13 +38998,10 @@ var render = function() {
                           }
                         },
                         [
-                          _c("customer-list-item", {
-                            attrs: {
-                              "first-name": customer.fname,
-                              "last-name": customer.lname,
-                              email: customer.email
-                            }
-                          })
+                          _c(
+                            "customer-list-item",
+                            _vm._b({}, "customer-list-item", customer, false)
+                          )
                         ],
                         1
                       )
@@ -55069,7 +55106,7 @@ var routes = [{
 }, {
   path: "/bookable/:id",
   component: _bookable_Bookable__WEBPACK_IMPORTED_MODULE_2__["default"],
-  name: "Bookable"
+  name: "bookable"
 }, {
   path: "/customer",
   component: _customer_Customer__WEBPACK_IMPORTED_MODULE_3__["default"],

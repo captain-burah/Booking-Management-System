@@ -16,7 +16,7 @@ const routes = [
     {
         path: "/bookable/:id",
         component: Bookable,
-        name: "Bookable",
+        name: "bookable",
     },
     {
         path: "/customer",

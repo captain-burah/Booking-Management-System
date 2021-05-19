@@ -1,7 +1,9 @@
 <template>
     <div class="card w-100">
         <div class="card-body">
-            <h4 class="card-title">{{ title }}</h4>
+            <router-link :to="{ name: 'bookable', params: {id } }">
+                <h4 class="card-title">{{ title }}</h4>
+            </router-link>
             <p class="card-text m-0">{{ description }}</p>
             <p class="card-text">Starting from {{  id }} onwards</p>
         </div>

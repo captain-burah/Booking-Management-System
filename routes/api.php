@@ -19,13 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('bookables', function (Request $request) {
-    return Bookable::all();
-});
+// Route::get('bookables', 'Api\BookableController@index');
+// Route::get('bookables/{id}', 'Api\BookableController@show');
 
-Route::get('bookables/{id}', function (Request $request, $bookableId) {
-    return Bookable::findOrFail($bookableId);
-});
+Route::apiResource('bookables', 'Api\BookableController')->only(['index', 'show']);
+
+
+
+
 
 Route::get('customers', function (Request $request) {
     return Customer::all();
