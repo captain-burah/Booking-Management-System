@@ -1949,9 +1949,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    'itemTitle': String,
-    'itemContent': String,
-    'price': Number
+    'title': String,
+    'description': String,
+    'id': Number
   }
 });
 
@@ -1967,10 +1967,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BookableListItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookableListItem */ "./resources/js/bookables/BookableListItem.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -2188,6 +2184,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38830,14 +38833,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card w-100" }, [
     _c("div", { staticClass: "card-body" }, [
-      _c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.itemTitle))]),
+      _c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text m-0" }, [
-        _vm._v(_vm._s(_vm.itemContent))
+        _vm._v(_vm._s(_vm.description))
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
-        _vm._v("Starting from " + _vm._s(_vm.price) + " onwards")
+        _vm._v("Starting from " + _vm._s(_vm.id) + " onwards")
       ])
     ])
   ])
@@ -38883,13 +38886,10 @@ var render = function() {
                       staticClass: "col d-flex align-items-stretch"
                     },
                     [
-                      _c("bookable-list-item", {
-                        attrs: {
-                          "item-title": bookable.title,
-                          "item-content": bookable.description,
-                          price: 1000.5
-                        }
-                      })
+                      _c(
+                        "bookable-list-item",
+                        _vm._b({}, "bookable-list-item", bookable, false)
+                      )
                     ],
                     1
                   )
@@ -39009,31 +39009,37 @@ var render = function() {
   return _c("div", [
     _vm.loading
       ? _c("div", [_vm._v("\n        Data is Loading...\n    ")])
-      : _c("div", { staticClass: "card mb-3" }, [
+      : _c("div", { staticClass: "col-md- card mb-3" }, [
           _c("img", {
             staticClass: "card-img-top",
             attrs: { src: "", alt: "" }
           }),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("h1", { staticClass: "card-title" }, [
-              _vm._v(
-                _vm._s(_vm.customerIntel.fname) +
-                  " " +
-                  _vm._s(_vm.customerIntel.lname)
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(
-                "Email: " +
-                  _vm._s(_vm.customerIntel.email) +
-                  " | Password: " +
-                  _vm._s(_vm.customerIntel.password)
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-2" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-10" }, [
+                _c("h1", { staticClass: "card-title" }, [
+                  _vm._v(
+                    _vm._s(_vm.customerIntel.fname) +
+                      " " +
+                      _vm._s(_vm.customerIntel.lname)
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(
+                    "Email: " +
+                      _vm._s(_vm.customerIntel.email) +
+                      " | Password: " +
+                      _vm._s(_vm.customerIntel.password)
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
           ])
         ])
   ])
