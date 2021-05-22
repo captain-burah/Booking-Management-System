@@ -34,7 +34,7 @@ export default {
         axios
         .get(`/api/customers/${this.$route.params.id}`)
         .then(response => {
-            this.customerIntel = response.data;
+            this.customerIntel = response.data.data;
             this.loading = false;
         })
     }

@@ -65,7 +65,7 @@ export default {
         const request = axios
         .get(`/api/customers`)
         .then(response => {
-            this.customers = response.data;
+            this.customers = response.data.data;
             this.loading = false;
         });
     }

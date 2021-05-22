@@ -2177,7 +2177,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.loading = true;
     var request = axios.get("/api/customers").then(function (response) {
-      _this.customers = response.data;
+      _this.customers = response.data.data;
       _this.loading = false;
     });
   }
@@ -2228,7 +2228,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.loading = true;
     axios.get("/api/customers/".concat(this.$route.params.id)).then(function (response) {
-      _this.customerIntel = response.data;
+      _this.customerIntel = response.data.data;
       _this.loading = false;
     });
   }
