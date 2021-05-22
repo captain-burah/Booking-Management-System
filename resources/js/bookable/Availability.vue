@@ -12,6 +12,7 @@
                     class="form-control form-control-sm" 
                     placeholder="Start Date"
                     v-model="from"
+                    v-on:keyup.enter="check"
                 >
             </div>
 
@@ -23,11 +24,13 @@
                     class="form-control form-control-sm" 
                     placeholder="End Date"
                     v-model="to"
+                    v-on:keyup.enter="check"
                 >
             </div>
         </div>
 
-        <button class="btn btn-secondary btn-block">Check</button>
+        <button class="btn btn-secondary btn-block" v-on:click="check">Check</button>
+
     </div>
 </template>
 
@@ -37,6 +40,11 @@ export default {
         return {
             from: null,
             to: null
+        }
+    },
+    methods: {
+        check() {
+            alert('i will check something');
         }
     }
 }
