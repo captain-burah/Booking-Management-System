@@ -15,6 +15,16 @@ class Booking extends Model
        return $this->belongsTo(Bookable::class);
    }
 
+   /**
+     * 
+     * The below function is Builder function that refers to the 
+     * database of the respective model only.
+     * This builder function will run a query along with a where
+     * clause in order to find overlapping between two date ranges.
+     * This function returns TRUE if the dates overlap with the 
+     * dates in the database table Booking.
+     *
+     */
    public function scopeBetweenDates(Builder $query, $from, $to)
    {
        return $query->where('to', '>=', $from)->where('from', '<=', $to); 
