@@ -25,6 +25,7 @@ class Booking extends Model
      * dates in the database table Booking.
      *
      */
+    
    public function scopeBetweenDates(Builder $query, $from, $to)
    {
        return $query->where('to', '>=', $from)->where('from', '<=', $to); 
