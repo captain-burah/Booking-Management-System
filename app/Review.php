@@ -6,6 +6,36 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+    /** 
+     * 
+     *   So now we have to tell LARAVEL  what are the relationships we have
+     *   between the REVIEW, BOOKING and BOOKABLE.
+     * 
+     */
+    public function bookable()
+    {
+        return $this->belongsTo(Bookable::class);
+        /**
+         * 
+         *   This "::" double colon is a static accessor, which means your not
+         *   really accessing a constant bcz the "class" is a constant in this 
+         *   context or your not accessing the instance of the "Bookable" class,
+         *   but your are accessing the class itself.
+         *
+         *   In simple, this is when you want to access something globally
+         *   from this class. This will return the namespace together with 
+         *   the class name.
+         * 
+         */
+    }
+
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class);
+    }
+
+
+
     /*
         The Review model will need alot of changes bcz of the new UUID field.
 
@@ -36,5 +66,5 @@ class Review extends Model
         return 'string';
     }
 
-    
+
 }
