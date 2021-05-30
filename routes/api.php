@@ -29,6 +29,11 @@ Route::apiResource('customers', 'Api\CustomerController')->only(['index', 'show'
 Route::get('bookables/{bookabe}/availability', 'Api\BookableAvailabilityController')
     ->name('bookables.availability.show');
 
+Route::get('bookables/{bookable}/reviews', 'Api\BookableReviewController')
+    ->name('bookables.reviews.index');
+
+    
+
 // Route::get('customers', function (Request $request) {
 //     return Customer::all();
 // });
