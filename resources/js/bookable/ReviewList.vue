@@ -6,9 +6,16 @@
         <div v-else>
             <div class="border-bottom d-none d-md-block" v-for="(review, index) in reviews" :key="index">
                 <div class="row pt-4">
-                    <div class="col-md-6">Tuan Burah</div>
+                    <div class="col-md-6">
+                        <div v-if="review.name">
+                            <h4>{{ review.name }}</h4>
+                        </div>
+                        <div v-else>
+                            <h4>Anonymous</h4>
+                        </div>
+                    </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <star-rating :rating="review.rating"></star-rating>
+                        <star-rating :rating="review.rating" class="fa-lg"></star-rating>
                     </div>
                 </div>
                 <div class="row">

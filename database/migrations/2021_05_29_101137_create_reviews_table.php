@@ -34,6 +34,7 @@ class CreateReviewsTable extends Migration
             $table->timestamps();
             
             $table->unsignedTinyInteger('rating');
+            $table->string('name')->nullable();
             $table->text('content');
 
             $table->unsignedBigInteger('bookable_id')->index();

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md-8 pb-4">
-            <div class="card">
+            <div class="card"> 
                 <div class="card-body">
                     <div v-if="!loading">
                         <h2>{{ bookable.title }}</h2>
@@ -12,11 +12,11 @@
                 </div>
             </div>
 
-            <review-list :bookable-id="this.$route.params.id"></review-list>
+            <review-list :bookable-id="String(this.$route.params.id)"></review-list>
 
         </div>
         <div class="col-md-4 pb-4">
-            <availability :bookable-id="this.$route.params.id"></availability>
+            <availability :bookable-id="String(this.$route.params.id)"></availability>
         </div>
     </div>
 </template>

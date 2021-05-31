@@ -2115,6 +2115,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 //import moment from "moment";
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2473,7 +2480,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -60869,7 +60875,9 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("review-list", { attrs: { "bookable-id": this.$route.params.id } })
+        _c("review-list", {
+          attrs: { "bookable-id": String(this.$route.params.id) }
+        })
       ],
       1
     ),
@@ -60877,7 +60885,11 @@ var render = function() {
     _c(
       "div",
       { staticClass: "col-md-4 pb-4" },
-      [_c("availability", { attrs: { "bookable-id": this.$route.params.id } })],
+      [
+        _c("availability", {
+          attrs: { "bookable-id": String(this.$route.params.id) }
+        })
+      ],
       1
     )
   ])
@@ -60922,13 +60934,20 @@ var render = function() {
               [
                 _c("div", { staticClass: "row pt-4" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _vm._v("Tuan Burah")
+                    review.name
+                      ? _c("div", [_c("h4", [_vm._v(_vm._s(review.name))])])
+                      : _c("div", [_c("h4", [_vm._v("Anonymous")])])
                   ]),
                   _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "col-md-6 d-flex justify-content-end" },
-                    [_c("star-rating", { attrs: { rating: review.rating } })],
+                    [
+                      _c("star-rating", {
+                        staticClass: "fa-lg",
+                        attrs: { rating: review.rating }
+                      })
+                    ],
                     1
                   )
                 ]),
@@ -61265,17 +61284,22 @@ var render = function() {
     "div",
     { staticClass: "d-flex" },
     [
-      _vm._v("\n    Actual Rating " + _vm._s(_vm.rating) + "\n    "),
       _vm._l(_vm.fullStar, function(star) {
-        return _c("i", { key: "full" + star, staticClass: "fas fa-star" })
+        return _c("i", {
+          key: "full" + star,
+          staticClass: "fas fa-star text-success"
+        })
       }),
       _vm._v(" "),
       _vm.halfStar
-        ? _c("i", { staticClass: "fas fa-star-half-alt" })
+        ? _c("i", { staticClass: "fas fa-star-half-alt text-success" })
         : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.emptyStar, function(star) {
-        return _c("i", { key: "empty" + star, staticClass: "far fa-star" })
+        return _c("i", {
+          key: "empty" + star,
+          staticClass: "far fa-star text-secondary"
+        })
       })
     ],
     2

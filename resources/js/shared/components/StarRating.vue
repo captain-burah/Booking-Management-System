@@ -1,9 +1,8 @@
 <template>
     <div class="d-flex">
-        Actual Rating {{rating}}
-        <i class="fas fa-star" v-for="star in fullStar" :key="'full' + star"></i>
-        <i class="fas fa-star-half-alt" v-if="halfStar"></i>
-        <i class="far fa-star" v-for="star in emptyStar" :key="'empty' + star"></i>
+        <i class="fas fa-star text-success" v-for="star in fullStar" :key="'full' + star"></i>
+        <i class="fas fa-star-half-alt text-success" v-if="halfStar"></i>
+        <i class="far fa-star text-secondary" v-for="star in emptyStar" :key="'empty' + star"></i>
     </div>
 </template>
 <script>
