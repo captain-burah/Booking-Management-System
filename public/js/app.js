@@ -2115,10 +2115,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 //import moment from "moment";
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2484,21 +2480,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     rating: Number
   },
   computed: {
+    /**
+     * 
+     * So we will round up a rating number as follows,
+     * 1.3 == 1.5  |  1.5 == 2.0  |  1.7 == 2.0
+     * 
+     */
     halfStar: function halfStar() {
-      return true;
+      /**
+       * 
+       * Reason for multiplying by 100 is bcz the rounded
+       * figure goes to zero for values below 0.5.
+       * The reason for rounding the figure is bcz the 
+       * substrated result shows in the 10th decimal place.
+       * 
+       */
+      var fraction = Math.round((this.rating - Math.floor(this.rating)) * 100); //console.log('halfstar ', fraction);
+
+      return fraction > 0 && fraction < 50;
     },
     fullStar: function fullStar() {
-      return 3;
+      return Math.round(this.rating);
     },
     emptyStar: function emptyStar() {
-      return 1;
+      // if rating would be 1.9, the ceil(1.9) = 2.
+      // Therefore the no. of empty stars will be,
+      // 5 - 2 = 3
+      return 5 - Math.ceil(this.rating);
     }
-  }
+  } // created() {
+  //     const numbers = [0.9, 4.0, 4.4, 4.5, 4.6, 4.9];
+  //     numbers.forEach(n => {
+  //         console.log(`round for ${n} is ${Math.round(n)}`);
+  //         console.log(`floor for ${n} is ${Math.floor(n)}`);
+  //         console.log(`ceil for ${n} is ${Math.ceil(n)}`);
+  //         console.log('==================================');
+  //     });
+  // }
+
 });
 
 /***/ }),
@@ -60903,14 +60928,7 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "col-md-6 d-flex justify-content-end" },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(review.rating) +
-                          "\n                    "
-                      ),
-                      _c("star-rating")
-                    ],
+                    [_c("star-rating", { attrs: { rating: review.rating } })],
                     1
                   )
                 ]),
@@ -61247,6 +61265,7 @@ var render = function() {
     "div",
     { staticClass: "d-flex" },
     [
+      _vm._v("\n    Actual Rating " + _vm._s(_vm.rating) + "\n    "),
       _vm._l(_vm.fullStar, function(star) {
         return _c("i", { key: "full" + star, staticClass: "fas fa-star" })
       }),
